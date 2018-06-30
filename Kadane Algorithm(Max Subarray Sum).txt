@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int max(int a, int b)
+{
+    return((a>b)?a:b);
+}
+
+int maxSubarray(int a[],int n)
+{
+    int max_tot=a[0];
+    int max_end=a[0];
+    int i;
+    
+    for(i=1;i<n;i++)
+    {
+        max_end=max(a[i],max_end+a[i]);
+        max_tot=max(max_tot,max_end);
+    }
+    
+    return max_tot;
+
+}
+
+int main()
+{
+    int test,num;
+    int arr[1000];
+    int max_val=0;
+    int i=0,j=0;
+    
+    scanf("%d",&test);
+    for(i=0;i<test;i++)
+    {
+        scanf("%d",&num);
+        for(j=0;j<num;j++)
+        {
+            scanf("%d",&arr[j]);
+        }
+        
+        max_val=maxSubarray(arr,num);
+        printf("%d\n",max_val);
+    }
+}
