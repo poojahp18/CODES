@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main() {
+	//code
+	int test;
+	int num;
+	int i,j,val;
+	int bitarr[]={0,0,0};
+	
+	scanf("%d",&test);
+	while(test--)
+	{
+	    scanf("%d",&num);
+	    for(i=0;i<num;i++)
+	    {
+	        scanf("%d",&val);
+	        if(val==0)
+	        {
+	            bitarr[0]+=1;
+	        }
+	        else if(val==1)
+	        {
+	            bitarr[1]+=1;
+	        }
+	        else if(val==2)
+	        {
+	            bitarr[2]+=1;
+	        }
+	    }
+	    for(i=0;i<3;i++)
+	    {
+	        val=bitarr[i];
+	        bitarr[i]=0;
+	        for(j=0;j<val;j++)
+	        {
+	            printf("%d ",i);
+	        }
+	    }
+	    printf("\n");
+	}
+	return 0;
+}
