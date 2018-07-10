@@ -1,0 +1,41 @@
+Link:https://practice.geeksforgeeks.org/problems/finding-number/0/?ref=self
+
+
+#include <stdio.h>
+
+int main() {
+	//code
+	
+	int test,num;
+	int i,j;
+	int arr[10000];
+	int search_ele=0;
+	int index=-1;
+	
+	scanf("%d",&test);
+	for(i=0;i<test;i++)
+	{
+	    scanf("%d",&num);
+	    scanf("%d",&search_ele);
+	    for(j=0;j<num;j++)
+	    {
+	        scanf("%d",&arr[j]);
+	        if(arr[j] == search_ele)
+	        {
+	            index = j;
+	        }
+	    }
+	    if(index == -1)
+	    {
+	        printf("OOPS! NOT FOUND\n");
+	    }
+	    else
+	    {
+	        printf("%d\n",index);
+	    }
+	}
+	
+	
+	
+	return 0;
+}
