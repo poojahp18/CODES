@@ -1,5 +1,116 @@
+Link: https://practice.geeksforgeeks.org/problems/finding-number/0/?ref=self
+
+Best Solution:
 #include <stdio.h>
 
+
+int descendingBinarySearch(int arr[], int low, int high, int key)
+{
+    int mid;
+    while (low <= high)
+    {
+        mid = low + (high - low) / 2;
+        if (arr[mid] == key)
+            return mid;
+        if (arr[mid] < key)
+            high = mid - 1;
+        else
+            low = mid + 1;
+    }
+    return -1;
+}
+
+int ascendingBinarySearch(int arr[], int low, int high, int key)
+{
+    int mid;
+    while (low <= high)
+    {
+        mid = low + (high - low) / 2;
+        if (arr[mid] == key)
+            return mid;
+        if (arr[mid] > key)
+            high = mid - 1;
+        else
+            low = mid + 1;
+    }
+    return -1;
+}
+
+int searchBitonic(int arr[], int n, int key, int index)
+{
+    if(key > arr[index])
+        return -1;
+     
+    else if(key == arr[index])
+        return index;
+     
+    else
+    {    
+        int temp = ascendingBinarySearch(arr, 0, index - 1, key);
+        if (temp != -1)
+        {
+             return temp;
+        }
+         
+        return descendingBinarySearch(arr, index + 1, n - 1, key);
+    }
+}
+
+int bitonicElem(int arr[],int first,int last)
+{
+    int mid=(first+last)/2;
+    
+    if(arr[mid]>arr[mid-1] && arr[mid]>arr[mid+1])
+    {
+        return mid;
+    }
+    else if(arr[mid] > arr[mid-1] && arr[mid] < arr[mid+1])
+    {
+        bitonicElem(arr,mid,last);
+    }
+    else
+    {
+        bitonicElem(arr,first,mid);
+    }
+}
+
+
+int main() {
+	//code
+	
+	int test,num;
+	int i,j;
+	int arr[10000];
+	int search_ele=0;
+	int index=-1;
+	
+	scanf("%d",&test);
+	for(i=0;i<test;i++)
+	{
+	    scanf("%d",&num);
+	    scanf("%d",&search_ele);
+	    for(j=0;j<num;j++)
+	    {
+	        scanf("%d",&arr[j]);
+	    }
+	    int c_elem=bitonicElem(arr,0,num);
+	    int x = searchBitonic(arr, num, search_ele, c_elem);
+	    if(x==-1)
+	    {
+	        printf("OOPS! NOT FOUND\n");
+	    }
+	    else
+	    {
+	        printf("%d\n",x);
+	    }
+	}
+	return 0;
+}
+
+
+Solution:(Not fully working)
+
+#include <stdio.h>
 
 int missingNum(int arr[],int n)
 {
