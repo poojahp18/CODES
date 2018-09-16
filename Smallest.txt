@@ -1,0 +1,23 @@
+
+def sort_string(a):
+    return ''.join(sorted(a))
+ 
+def findSmallestPermutation(s):
+    le = len(s)
+
+    s = sort_string(s)
+    i = 0
+    while (s[i] == '0'):
+        i += 1
+    a = list(s)
+    a[0] = a[i]
+    a[i] = '0'
+    s = "".join(a)
+    return s
+  
+
+#input
+s=101
+res = findSmallestPermutation(s)
+print res
+ 

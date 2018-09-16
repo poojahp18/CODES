@@ -1,0 +1,67 @@
+Link: https://practice.geeksforgeeks.org/problems/find-the-closest-number/0/?track=SP-Arrays%20and%20Searching
+
+#include <stdio.h>
+
+int searchBinary(int arr[],int strt,int end,int key)
+{
+    int mid=strt+(end-strt)/2;
+    
+    if(arr[mid]>key && arr[mid-1]<key)
+    {
+        int diff1=arr[mid]-key;
+        int diff2=key-arr[mid-1];
+        
+        if(diff1==diff2)
+        {
+            return diff1;
+        }
+        else
+            return (diff1>diff2)?diff1:diff2;
+    }
+    else if(arr[mid]>key && arr[mid-1]>key)
+    {
+        searchBinary(arr,strt,mid-1,key);
+    }
+    else if(arr[mid]<key && arr[mid+1]>key)
+    {
+        int diff1=arr[mid+1]-key;
+        int diff2=key-arr[mid];
+        
+        if(diff1==diff2)
+        {
+            return diff1;
+        }
+        else
+            return (diff1>diff2)?diff1:diff2;
+    }
+    else if(arr[mid]<key && arr[mid+1]<key)
+    {
+        searchBinary(arr,mid+1,end,key);
+    }
+    
+    
+}
+
+int main() {
+	//code
+	int test,num,key;
+	int i=0,j=0,k=0;
+	int arr[1000];
+	
+	scanf("%d",&test);
+	for(i=0;i<test;i++)
+	{
+	    scanf("%d",&num);
+	    scanf("%d",&key);
+	    for(j=0;j<num;j++)
+	    {
+	        scanf("%d",&arr[j]);
+	    }
+	    
+	    int val=searchBinary(arr,0,num-1,key);
+	    printf("%d ",&val);
+	}
+	
+	
+	return 0;
+}
