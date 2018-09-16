@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <math.h>
+
+void generateNextHighest(int arr[10],int n)
+{
+    int max;
+    for(int i=0;i<n;i++)
+    {
+        max = 99999999;
+        for(int j=i+1;j<n;j++)
+        {
+            if(max > arr[j] && arr[i] < arr[j])
+            {
+                max = arr[j];
+            }
+        }
+        if(max==99999999)
+        {
+            printf("-1\t");
+        }
+        else
+            printf("%d\t",max);
+    }
+    
+}
+
+int main() {
+	//code
+	int n;
+	int arr[10];
+	scanf("%d",&n);
+	for(int i=0;i<n;i++)
+	{
+	    scanf("%d",&arr[i]);
+	}
+	
+	generateNextHighest(arr,n);
+	
+	return 0;
+}
